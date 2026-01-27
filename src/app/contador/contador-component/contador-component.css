@@ -1,0 +1,46 @@
+.btn {
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin: 10px 5px;
+}
+
+.btnIncremento {
+  background-color: #2ea44f;
+}
+
+.btnIncremento:hover {
+  background-color: #2c974b;
+}
+
+.btnDecremento {
+  background-color: #a42e2e;
+}
+
+.btnDecremento:hover {
+  background-color: #972c2c;
+}
+
+.btnReset {
+  background-color: #2e83a4;
+}
+
+.btnReset:hover {
+  background-color: #2c8597;
+}
+
+.label {
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  margin: 10px 5px;
+}

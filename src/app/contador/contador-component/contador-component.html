@@ -1,9 +1,9 @@
-<p>contador-component works!</p>
+<div>
+    <div class="label">Cuenta actual: {{ contador() }}</div>
 
-<button (click)="incremento()">Incremento</button>
-
-<div>Cuenta actual: {{ contador() }}</div>
-
-<button (click)="decremento()">Decremento</button>
-
-<button (click)="reset()">Reset contador</button>
+    <div>
+        <button (click)="incremento()" class="btn btnIncremento">Incremento</button>
+        <button (click)="decremento()" class="btn btnDecremento">Decremento</button>
+        <button (click)="reset()" class="btn btnReset">Reset</button>
+    </div>
+</div>

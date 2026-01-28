@@ -1,0 +1,28 @@
+<p>cursos-lista works!</p>
+
+<div>
+    <div>
+        Cursos por tomar: {{ totalCursosTomar$ | async }}
+    </div>
+    <div>
+        Cursos completados: {{ totalCursosCompletados$ | async }}
+    </div>
+    <div>
+        <ul>
+        @for(curso of cursosTomar$ | async; track curso.id) {
+            <li>
+                <input type="checkbox" (change)="completarCurso(curso.id)" /> {{ curso.nombre }}
+                <button (click)="borrarCurso(curso.id)">Borrar curso</button>
+            </li>
+        }
+        </ul>
+    </div>
+</div>
+
+<form [formGroup]="formaCurso" (ngSubmit)="enviar()">
+    <input type="text" placeholder="Nombre" formControlName="nombre" />
+    <input type="number" placeholder="Duración" formControlName="duracion" />
+    <input type="checkbox" formControlName="completado" />
+    <button >Agregar curso</button>
+</form>
+

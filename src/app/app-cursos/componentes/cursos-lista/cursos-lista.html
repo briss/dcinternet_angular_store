@@ -1,28 +1,51 @@
-<p>cursos-lista works!</p>
+<h1>Cursos Store</h1>
 
-<div>
-    <div>
-        Cursos por tomar: {{ totalCursosTomar$ | async }}
-    </div>
-    <div>
-        Cursos completados: {{ totalCursosCompletados$ | async }}
-    </div>
-    <div>
-        <ul>
-        @for(curso of cursosTomar$ | async; track curso.id) {
-            <li>
-                <input type="checkbox" (change)="completarCurso(curso.id)" /> {{ curso.nombre }}
-                <button (click)="borrarCurso(curso.id)">Borrar curso</button>
-            </li>
-        }
-        </ul>
-    </div>
+<div class="container">
+  <div class="column left-column">
+    <table>
+        <tbody>
+            @for(curso of cursosTomar$ | async; track curso.id) {
+                <tr>
+                    <td>
+                        <input type="checkbox" (change)="completarCurso(curso.id)" />
+                        {{ curso.nombre }}
+                    </td>
+                    <td>
+                        <button (click)="borrarCurso(curso.id)" class="boton boton2">Borrar curso</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Cursos pendientes:</td>
+                <td>{{ totalCursosTomar$ | async }}</td>
+            </tr>
+            <tr>
+                <td>Curso completados:</td>
+                <td>{{ totalCursosCompletados$ | async }}</td>
+            </tr>
+        </tfoot>
+    </table>
+  </div>
+
+  <div class="column right-column">
+    <fieldset>
+        <legend>Curso</legend>
+
+        <form [formGroup]="formaCurso" (ngSubmit)="enviar()">
+            <div>
+                <input type="text" placeholder="Nombre" formControlName="nombre" />
+            </div>
+            <div>
+                <input type="number" placeholder="Duración" formControlName="duracion" />
+            </div>
+            <div>
+                <input type="checkbox" id="completado" formControlName="completado" />
+                <label for="completado">Completado</label>
+            </div>
+            <button>Agregar curso</button>
+        </form>
+    </fieldset>
+  </div>
 </div>
-
-<form [formGroup]="formaCurso" (ngSubmit)="enviar()">
-    <input type="text" placeholder="Nombre" formControlName="nombre" />
-    <input type="number" placeholder="Duración" formControlName="duracion" />
-    <input type="checkbox" formControlName="completado" />
-    <button >Agregar curso</button>
-</form>
-

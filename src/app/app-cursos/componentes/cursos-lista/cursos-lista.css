@@ -1,0 +1,164 @@
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+}
+
+fieldset {
+    margin: 2em 0;
+    padding: 1em 2em;
+    border: 2px solid cornflowerblue;
+    border-radius: 5px;
+    min-width: 200px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+legend {
+    color: #999;
+    font-size: 1.25em;
+    padding: 0 .25em;
+}
+
+input {
+    background-color: lightblue;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 0px;
+}
+
+input.ng-invalid{
+    border: 1px solid red;
+}
+
+input[type="email"],
+input[type="text"] {
+    width: 20em;
+}
+
+input[type="checkbox"]+label,
+input[type="radio"]+label {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px 0px;
+    font-size: 16px;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+tbody tr:hover {
+    background-color: rgb(172, 214, 241);
+}
+
+tfoot tr {
+    background-color: #2a4e92;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+tfoot td:last-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.boton {
+    background-color: #85a8ea; /* azul */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.boton1 {
+    font-size: 10px;
+    padding: 5px 10px;
+}
+
+.boton2 {
+    font-size: 12px;
+    background-color: #da5555;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.boton3 {
+    font-size: 12px;
+    background-color: #57a670;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of columns */
+}
+
+.column {
+    flex: 1; /* Each column takes equal space */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+button {
+    padding: 10px 30px;
+    background-color: rgb(14, 81, 104);
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.deshabilitado {
+    padding: 10px 30px;
+    background-color: rgb(161, 163, 163);
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.error{
+    margin: 5px;
+    color:red
+}
+
+.invalid {
+    border: 2px solid red;
+}

@@ -2,8 +2,9 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { contadorReducer } from './contador/contador.reducer';
+import { cursosReducer } from './app-cursos/tienda/curso.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       contador: contadorReducer
+    }),
+    provideState({
+      name: 'Cursos',
+      reducer: cursosReducer
     })
   ]
 };

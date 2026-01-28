@@ -8,15 +8,20 @@ export const estadoInicial:CursoState = {
 
 export const cursosReducer = createReducer(
     estadoInicial,
-    on(agregarCurso, (estado:CursoState, {c}) => ({
+    on(agregarCurso, (estado:CursoState, {curso}) => ({
         ...estado, 
-        cursos: [...estado.cursos, ...c]
+        cursos: [...estado.cursos, ...curso]
     })),
-    on(eliminarCurso, (estado:CursoState, {idCurso}) => ({
+    // Las nomenclaturas de agregarCurso y eliminarCurso son equivalentes
+    on(eliminarCurso, (estado:CursoState, props) => {
+        return {
+            ...estado,
+            cursos: estado.cursos.filter(curso => curso.id !== props.idCurso)
+        };
+    }),
+    on(completarCurso, (estado, {idCurso}) => ({
         ...estado,
-        cursos: estado.cursos.filter(curso => curso.id !== idCurso)
-    })),
-    on(completarCurso, (estado) => ({
-        ...estado
+        cursos: estado.cursos
+            .map(curso => curso.id === idCurso ? {...curso, completado: !curso.completado } : curso)
     }))
 );

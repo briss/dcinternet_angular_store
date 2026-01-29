@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Curso } from "../../model/curso.modelo";
-import { seleccionarCursosTodos, seleccionarTotalCursosCompletados, seleccionarTotalCursosPendientes } from '../../tienda/curso.selector';
 import { Observable } from 'rxjs';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { agregarCurso, completarCurso, eliminarCurso } from '../../tienda/curso.actions';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Curso } from "../../model/curso.modelo";
+import { agregarCurso, completarCurso, consultarCursos, eliminarCurso } from '../../tienda/curso.actions';
+import { seleccionarCursosTodos, seleccionarTotalCursosCompletados, seleccionarTotalCursosPendientes } from '../../tienda/curso.selector';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -13,7 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './cursos-lista.html',
   styleUrl: './cursos-lista.css',
 })
-export class CursosLista {
+export class CursosLista implements OnInit {
 
   private readonly store = inject(Store<Curso[]>);
 
@@ -22,10 +22,31 @@ export class CursosLista {
 
   cursosTomar$:Observable<Curso[]>
 
-
-  formaCurso:FormGroup = new FormGroup({
-    nombre: new FormControl(""),
-    duracion: new FormControl(0),
+  formaCurso:FormGroup = new FormGroup<{
+    nombre: FormControl<string | null>,
+    categoria: FormControl<string | null>,
+    duracion: FormControl<number | null>,
+    descripcion: FormControl<string | null>,
+    imagen: FormControl<string | null>,
+    completado: FormControl<boolean | null>
+  }>({
+    nombre: new FormControl("", [
+      Validators.required,
+      Validators.minLength(4)
+    ]),
+    categoria: new FormControl("", [
+      Validators.required
+    ]),
+    duracion: new FormControl(32, [
+      Validators.required,
+      Validators.min(10)
+    ]),
+    descripcion: new FormControl("", [
+      Validators.required
+    ]),
+    imagen: new FormControl("", [
+      Validators.required
+    ]),
     completado: new FormControl(false)
   });
 
@@ -35,15 +56,24 @@ export class CursosLista {
     this.totalCursosCompletados$ = this.store.select(seleccionarTotalCursosCompletados);
   }
 
+
+  ngOnInit(): void {
+    this.store.dispatch(consultarCursos());
+  }
+
+
   enviar() {
     let curso = {
       id: Date.now(),
       nombre: this.formaCurso.get("nombre")?.value,
+      categoria: this.formaCurso.get("categoria")?.value,
       duracion: this.formaCurso.get("duracion")?.value,
+      descripcion: this.formaCurso.get("descripcion")?.value,
+      imagen: this.formaCurso.get("imagen")?.value,
       completado: this.formaCurso.get("completado")?.value
     };
 
-    this.store.dispatch(agregarCurso({curso: [curso]}))
+    this.store.dispatch(agregarCurso({curso: curso}))
   }
 
   completarCurso(idCurso:number) {

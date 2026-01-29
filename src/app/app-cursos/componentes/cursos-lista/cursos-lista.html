@@ -11,7 +11,7 @@
                         {{ curso.nombre }}
                     </td>
                     <td>
-                        <button (click)="borrarCurso(curso.id)" class="boton boton2">Borrar curso</button>
+                        <button (click)="borrarCurso(curso.id)" class="boton boton2">🗑️</button>
                     </td>
                 </tr>
             }
@@ -38,7 +38,16 @@
                 <input type="text" placeholder="Nombre" formControlName="nombre" />
             </div>
             <div>
+                <input type="text" placeholder="Categoría" formControlName="categoria" />
+            </div>
+            <div>
                 <input type="number" placeholder="Duración" formControlName="duracion" />
+            </div>
+            <div>
+                <input type="text" placeholder="Descripción" formControlName="descripcion" />
+            </div>
+            <div>
+                <input type="text"   placeholder="Imagen"      formControlName="imagen" />
             </div>
             <div>
                 <input type="checkbox" id="completado" formControlName="completado" />

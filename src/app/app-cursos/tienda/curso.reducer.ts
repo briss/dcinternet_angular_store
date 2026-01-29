@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { agregarCurso, completarCurso, eliminarCurso } from "./curso.actions";
+import { agregarCurso, completarCurso, consultarCursos, eliminarCurso, guardarListaCursos } from "./curso.actions";
 import { CursoState } from "./curso.state";
 
 export const estadoInicial:CursoState = {
@@ -8,9 +8,16 @@ export const estadoInicial:CursoState = {
 
 export const cursosReducer = createReducer(
     estadoInicial,
+    on(consultarCursos, (estado:CursoState) => ({
+        ...estado,
+    })),
+    on(guardarListaCursos, (estado:CursoState, {cursos}) => ({
+        ...estado,
+        cursos: cursos
+    })),
     on(agregarCurso, (estado:CursoState, {curso}) => ({
-        ...estado, 
-        cursos: [...estado.cursos, ...curso]
+        ...estado,
+        cursos: [...estado.cursos, curso]
     })),
     // Las nomenclaturas de agregarCurso y eliminarCurso son equivalentes
     on(eliminarCurso, (estado:CursoState, props) => {
